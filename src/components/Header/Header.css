@@ -1,6 +1,5 @@
 .Header {
     background-color: #282c34;
-    color: #fff;
     padding-left: 10px;
     padding-right: 10px;
     height: 100px;
@@ -9,11 +8,16 @@
     justify-content: space-between;
 }
 
+.Header a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .NavLinks {
     list-style: none;
     display: flex;
 }
 
-.NavLinks > li {
+.NavLinks li {
     margin-right: 20px;
 }

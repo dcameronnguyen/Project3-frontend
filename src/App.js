@@ -1,47 +1,62 @@
 import { useState } from "react";
-import "./App.css";
-import Footer from "./components/Footer/Footer";
+
 import Header from "./components/Header/Header";
-import Dashboard from "./Pages/Dashboard";
+import Footer from "./components/Footer/Footer";
+
 import HomePage from "./Pages/HomePage";
+import Dashboard from "./Pages/Dashboard";
 import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
-import { Route, Switch, withRouter } from "react-router-dom";
-import { getUser } from "./services/userService";
+
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+
+import { getUser, logout } from "./services/userService";
+
+import "./App.css";
 
 function App(props) {
-  // component state
-  const [userState, setUserState] = useState({
-    user: getUser(),
-  });
+  /* component state */
+  const [userState, setUserState] = useState({ user: getUser() });
 
-  // helper functions
+  /* helper functions */
 
-  function handleSignUpOrLogin() {
-    // place user into state using setter function
+  function handleSignupOrLogin() {
+    // place user into state using the setter function
     setUserState({ user: getUser() });
-    // programatically route user to dashboard
+    // programmatically route user to dashboard
     props.history.push("/dashboard");
+  }
+
+  function handleLogout() {
+    logout();
+    setUserState({ user: null });
+    props.history.push("/");
   }
 
   return (
     <div className="App">
-      <Header />
+      <Header user={userState.user} handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/" render={(props) => <HomePage />} />
-        <Route exact path="/dashboard" render={(props) => <Dashboard />} />
         <Route
           exact
-          path="/login"
-          render={(props) => (
-            <LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />
-          )}
+          path="/dashboard"
+          render={(props) =>
+            getUser() ? <Dashboard /> : <Redirect to="/login" />
+          }
         />
         <Route
           exact
           path="/signup"
           render={(props) => (
-            <SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />
+            <SignupPage handleSignupOrLogin={handleSignupOrLogin} />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(props) => (
+            <LoginPage handleSignupOrLogin={handleSignupOrLogin} />
           )}
         />
       </Switch>

@@ -1,24 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Game from "../components/Game/Game";
+import { getSearch } from "../services/gameDBapi";
 
 export default function Dashboard() {
-  const [searchState, setSearchState] = useState({});
+  const [searchState, setSearchState] = useState({
+    count: "",
+    next: "",
+    previous: "",
+    undefined: "",
+  });
 
   function handleChange(event) {
     setSearchState((prevState) => ({
       ...prevState,
-      [event.target.term]: event.target.value,
+      [event.target.undefined]: event.target.value,
     }));
-    console.log(searchState);
   }
 
   function formValid() {
     return !!searchState;
   }
 
+  async function getSearchData() {
+    const data = await getSearch(searchState.undefined);
+    setSearchState(data);
+  }
+
+  async function handleSubmit(event) {
+    //disable the default behavior of a form submission
+    event.preventDefault();
+    if (!formValid()) return;
+    try {
+      await getSearchData();
+    } catch (error) {
+      alert(error.message);
+    }
+    console.log(getSearchData);
+  }
+
+  function nextPage() {}
+
   return (
     <main className="Page">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="col-sm-12">
             <input
@@ -26,7 +51,7 @@ export default function Dashboard() {
               type="text"
               className="form-control"
               placeholder="search game"
-              value={searchState.term}
+              value={searchState.search}
               onChange={handleChange}
             />
           </div>
@@ -44,6 +69,22 @@ export default function Dashboard() {
           </div>
         </div>
       </form>
+      <div className="container">
+        {searchState.results
+          ? searchState.results.map((game, idx) => (
+              <Game game={game} key={idx} />
+            ))
+          : ""}
+      </div>
+      <div>
+        {searchState.results ? (
+          <div>
+            <button>Previous</button> <button onClick={nextPage}>Next</button>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </main>
   );
 }

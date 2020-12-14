@@ -5,28 +5,31 @@ export default function Header(props) {
   return (
     <header className="Header">
       <Link to="/">
-        <h1>My Project</h1>
+        <h1>gameSeek</h1>
       </Link>
       <nav>
         <ul className="NavLinks">
           {props.user ? (
             <>
               <li>
-                <Link to="" onClick={props.handleLogout}>
-                  Logout
-                </Link>
+                <Link>| Hello, {props.name} |</Link>;
               </li>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard">| Dashboard |</Link>
+              </li>
+              <li>
+                <Link to="" onClick={props.handleLogout}>
+                  | Logout |
+                </Link>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login">| Login |</Link>
               </li>
               <li>
-                <Link to="/signup">Signup</Link>
+                <Link to="/signup">| Signup |</Link>
               </li>
             </>
           )}

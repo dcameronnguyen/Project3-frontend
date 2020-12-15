@@ -57,6 +57,8 @@ Need to sanitize the search input and also make it so it can't search if undefin
 
 ## Future Enhancements
 
+Create a profile page
+
 Want to add page pagination to the search results instead of loading the first 20 relevant searches.
 
 Make the search results just populate a list of cards with game title and image that's clickable to show the details page instead all at once during search.

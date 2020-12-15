@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Game from "../components/Game/Game";
 import { getSearch } from "../services/gameDBapi";
 
+import "./HomePage.css";
+import "../components/Game/Game.css";
+
 export default function Dashboard() {
   const [searchState, setSearchState] = useState({
     count: "",
@@ -42,9 +45,10 @@ export default function Dashboard() {
   function nextPage() {}
 
   return (
-    <main className="Page">
+    <main className="Page Poster">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          <br />
           <div className="col-sm-12">
             <input
               name="search"
@@ -61,15 +65,17 @@ export default function Dashboard() {
             <input
               disabled={!formValid()}
               type="submit"
-              className="btn btn-default"
+              className="btn btn-default Search"
               value="Search Game"
             />
             &nbsp;&nbsp;
-            <Link to="/">Cancel</Link>
+            <Link to="/" className="Links">
+              Cancel
+            </Link>
           </div>
         </div>
       </form>
-      <div className="container">
+      <div className="Poster">
         {searchState.results
           ? searchState.results.map((game, idx) => (
               <Game game={game} key={idx} />

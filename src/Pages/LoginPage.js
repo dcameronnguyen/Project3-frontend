@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { login } from "../services/userService";
 
+import "./HomePage.css";
+
 export default function LoginPage(props) {
   // component state
   const [formState, setFormState] = useState({
@@ -43,7 +45,11 @@ export default function LoginPage(props) {
 
   return (
     <main className="Page">
-      <h1>LoginPage</h1>
+      <h1 className="PageName">
+        <strong>
+          <i>Login</i>
+        </strong>
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="col-sm-12">
@@ -77,8 +83,11 @@ export default function LoginPage(props) {
               className="form-control"
               type="submit"
             />
-            &nbsp;&nbsp;
-            <Link to="/">Cancel</Link>
+            <br />
+            <br />
+            <Link to="/" className="Links">
+              Cancel
+            </Link>
           </div>
         </div>
       </form>

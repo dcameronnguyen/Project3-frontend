@@ -12,7 +12,7 @@ export default function Header(props) {
           {props.user ? (
             <>
               <li>
-                <Link>| Hello, {props.name} |</Link>;
+                <Link>| Hello, {props.user.name} |</Link>;
               </li>
               <li>
                 <Link to="/dashboard">| Dashboard |</Link>
@@ -26,10 +26,10 @@ export default function Header(props) {
           ) : (
             <>
               <li>
-                <Link to="/login">| Login |</Link>
+                <Link to="/signup">| Signup |</Link>
               </li>
               <li>
-                <Link to="/signup">| Signup |</Link>
+                <Link to="/login">| Login |</Link>
               </li>
             </>
           )}

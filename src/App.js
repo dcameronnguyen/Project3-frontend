@@ -14,6 +14,8 @@ import { getUser, logout } from "./services/userService";
 
 import "./App.css";
 
+require("dotenv").config();
+
 function App(props) {
   /* component state */
   const [userState, setUserState] = useState({ user: getUser() });

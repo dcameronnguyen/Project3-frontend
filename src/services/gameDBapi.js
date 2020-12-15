@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const key = process.env.API_KEY;
+// const key = process.env.API_KEY;
 
 const BASE_URL = `https://api.rawg.io/api/games?key=c12efb01df64453e9e6ee4e03d41f54d
 `;

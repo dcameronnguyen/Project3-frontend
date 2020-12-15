@@ -1,0 +1,15 @@
+.Poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgb(9, 134, 218);
+  background-color: rgb(0, 0, 0);
+  opacity: 0.8;
+}
+
+.Picture {
+  max-width: 80%;
+  max-height: 70%;
+}

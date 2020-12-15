@@ -2,4 +2,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: rgb(47, 47, 47);
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F08%2FOld-Library-Wallpaper.jpg&f=1&nofb=1");
 }

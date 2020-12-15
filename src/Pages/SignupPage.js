@@ -2,6 +2,8 @@ import { signup } from "../services/userService";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import "./HomePage.css";
+
 export default function SignupPage(props) {
   const [formState, setFormState] = useState({
     name: "",
@@ -34,7 +36,11 @@ export default function SignupPage(props) {
 
   return (
     <main className="Page">
-      <h1>Sign Up</h1>
+      <h1 className="PageName">
+        <strong>
+          <i>Sign Up</i>
+        </strong>
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="col-sm-12">
@@ -73,15 +79,18 @@ export default function SignupPage(props) {
           </div>
         </div>
         <div className="form-group">
-          <div className="col-sm-12 text-center">
+          <div className="col-sm-12">
             <input
               disabled={!formValid()}
-              type="submit"
-              className="btn btn-default"
               value="Sign Up"
+              className="form-control"
+              type="submit"
             />
-            &nbsp;&nbsp;
-            <Link to="/">Cancel</Link>
+            <br />
+            <br />
+            <Link to="/" className="Links">
+              Cancel
+            </Link>
           </div>
         </div>
       </form>
